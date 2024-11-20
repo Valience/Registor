@@ -40,12 +40,14 @@
               Command="{Binding GetCryptoModulesCommand}"
               IsRefreshing="{Binding IsRefreshing}">
             <StackLayout Grid.Column="0" BackgroundColor="White" Padding="5">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearSelectedModuleCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Label Text="Зареєстровані модулі" FontAttributes="Bold" FontSize="18" TextColor="#0D1F48"/>
                 <CollectionView ItemsSource="{Binding CryptoModules}"
                                 SelectedItem="{Binding SelectedModule}"
                                 SelectionMode="Single"
                                 BackgroundColor="White">
-                    
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="5" BackgroundColor="White" Margin="0,0,0,5">
