@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Registor.View.FormPage"
+             xmlns:model="clr-namespace:Registor.Model"
+             xmlns:viewmodel="clr-namespace:Registor.ViewModel"
+             x:DataType="viewmodel:FormPageViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+    <VerticalStackLayout Padding="20">
+        <Label Text="Module Name" FontAttributes="Bold"/>
+        <Entry Placeholder="Enter module name"
+               Text="{Binding CryptoModule.ModuleName}" />
+
+        <Label Text="Serial Number" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Entry Placeholder="Enter serial number"
+               Text="{Binding CryptoModule.SerialNumber}" />
+
+        <Label Text="IP Address" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Entry Placeholder="Enter IP address"
+               Text="{Binding CryptoModule.IPAddress}" />
+
+        <HorizontalStackLayout Margin="0,10,0,0">
+            <CheckBox IsChecked="{Binding IsDefaultPortsChecked}"/>
+            <Label Text="Initialize default ports (3011 - 3016)" VerticalOptions="Center" Margin="5,0,0,0"/>
+        </HorizontalStackLayout>
+
+        <Label Text="TCP Ports" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <CollectionView ItemsSource="{Binding CryptoModule.Ports}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Port" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Entry Text="{Binding .}" 
+                               Keyboard="Numeric" 
+                               Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <HorizontalStackLayout Margin="0,20,0,0" Spacing="10">
+            <Button Text="Cancel" Command="{Binding CancelModuleCommand}" 
+                    HorizontalOptions="StartAndExpand" />
+            <Button Text="Save" Command="{Binding SaveModuleCommand}" 
+                    HorizontalOptions="EndAndExpand" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
