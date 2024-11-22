@@ -36,31 +36,33 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-          <RefreshView 
-              Command="{Binding GetCryptoModulesCommand}"
-              IsRefreshing="{Binding IsRefreshing}">
-            <StackLayout Grid.Column="0" BackgroundColor="White" Padding="5">
+            <RefreshView 
+    Command="{Binding GetCryptoModulesCommand}"
+    IsRefreshing="{Binding IsRefreshing}">
+                <StackLayout Grid.Column="0" BackgroundColor="White" Padding="5">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ClearSelectedModuleCommand}" />
+                        <TapGestureRecognizer Command="{Binding GetCryptoModulesCommand}" />
                     </StackLayout.GestureRecognizers>
                     <Label Text="Зареєстровані модулі" FontAttributes="Bold" FontSize="18" TextColor="#0D1F48"/>
-                <CollectionView ItemsSource="{Binding CryptoModules}"
-                                SelectedItem="{Binding SelectedModule}"
-                                SelectionMode="Single"
-                                BackgroundColor="White">
+                    <CollectionView ItemsSource="{Binding CryptoModules}"
+                        SelectedItem="{Binding SelectedModule}"
+                        SelectionMode="Single"
+                        BackgroundColor="White">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="model:CryptoModule">
                                 <Grid Padding="5" BackgroundColor="White" Margin="0,0,0,5">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
+                                                    <Setter TargetName="ModuleNameLabel" Property="Label.TextColor" Value="Black" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="Selected">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="#0D1F48" />
+                                                    <Setter TargetName="ModuleNameLabel" Property="Label.TextColor" Value="White" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -68,13 +70,20 @@
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CryptoModuleViewModel}}, Path=SelectModuleCommand}" CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
-                                    <Image Source="selectinsertimage.ico" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" />
+
+                                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                        <Image Source="selectinsertimage.ico" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" />
+                                        <Label x:Name="ModuleNameLabel" 
+                                               Text="{Binding ModuleName}" 
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Start" />
+                                    </HorizontalStackLayout>
                                 </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-          </RefreshView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </RefreshView>
             <StackLayout Grid.Column="1" BackgroundColor="#0D1F48" Padding="10">
                 <Label Text="Модулі" FontAttributes="Bold" FontSize="18" TextColor="White" />
                 <Button Style="{StaticResource ButtonStyle}" Text="Поновити" Command="{Binding GetCryptoModulesCommand}"/>

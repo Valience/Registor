@@ -35,9 +35,10 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Port" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Entry Text="{Binding .}" 
+                        <Entry Text="{Binding ., Mode=TwoWay}"
                                Keyboard="Numeric" 
-                               Grid.Column="1"/>
+                               Grid.Column="1"
+                               Unfocused="PortUnfocused"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Registor.Model;
 using Registor.Services;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -19,6 +20,8 @@ public partial class FormPageViewModel : BaseViewModel
     private bool isEditMode;
     [ObservableProperty]
     private bool isDefaultPortsChecked;
+    [ObservableProperty]
+    private string validationMessage;
 
     public FormPageViewModel(CryptoModuleService cryptoModuleService)
     {
@@ -60,8 +63,8 @@ public partial class FormPageViewModel : BaseViewModel
             CryptoModule.Ports.Clear();
         }
 
-        Debug.WriteLine($"Updated Ports in Default: {string.Join(", ", CryptoModule.Ports)}");
     }
+ 
 
     [RelayCommand]
     private static async Task CancelModuleAsync()
@@ -74,12 +77,11 @@ public partial class FormPageViewModel : BaseViewModel
     {
         if (!IsValidModule())
         {
-            await Shell.Current.DisplayAlert("Error", "Please fill all required fields.", "OK");
+            await Shell.Current.DisplayAlert("Error", ValidationMessage, "OK");
             return;
         }
         try
         {
-            Debug.WriteLine($"Updated Ports in Save: {string.Join(", ", CryptoModule.Ports)}");
             if (IsEditMode)
             {
                 await cryptoModuleService.UpdateModuleAsync(CryptoModule);
@@ -101,17 +103,20 @@ public partial class FormPageViewModel : BaseViewModel
     {
         if (string.IsNullOrWhiteSpace(CryptoModule.ModuleName) || CryptoModule.ModuleName.Length > 20)
         {
+            ValidationMessage = "Module name is required and should be 1-20 characters long.";
             return false;
         }
 
         if (!int.TryParse(CryptoModule.SerialNumber, out int serialNumber) || serialNumber < 1 || serialNumber > 999)
         {
+            ValidationMessage = "Serial number is required and must be between 1 and 999.";
             return false;
         }
 
 
         if (!IsValidIPAddress(CryptoModule.IPAddress))
         {
+            ValidationMessage = "IP address is not valid. Please enter a valid IP address.";
             return false;
         }
 
@@ -119,6 +124,7 @@ public partial class FormPageViewModel : BaseViewModel
         {
             if (!int.TryParse(port, out int portNumber) || portNumber < 1 || portNumber > 65535)
             {
+                ValidationMessage = $"Port '{port}' is not valid. Each port must be a number between 1 and 65535.";
                 return false;
             }
         }
