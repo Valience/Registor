@@ -114,7 +114,7 @@
         <StackLayout Grid.Row="3" BackgroundColor="White" Padding="10">
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsNoModuleRegistered}">
                 <Image Source="info.ico" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start"/>
-                <Label Text="Не зареєстровано жодного модуля" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" FontSize="14" Margin="10"/>
+                <Label Text="Не зареєстровано жодного модуля" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14" Margin="10"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsModuleRegistered}">
@@ -133,13 +133,13 @@
 
                 <VerticalStackLayout Spacing="5" Margin="20,10,0,0">
                     <Label Text="{Binding SelectedModule.ModuleName, StringFormat='Назва модуля:                {0}'}" 
-                           Style="{StaticResource LabelStyle}" />
+                           FontSize="12" />
                     <Label Text="{Binding SelectedModule.SerialNumber, StringFormat='Серійний номер:           {0}'}" 
-                           Style="{StaticResource LabelStyle}" />
+                           FontSize="12" />
                     <Label Text="{Binding SelectedModule.IPAddress, StringFormat='IP-адреса:                        {0}'}" 
-                           Style="{StaticResource LabelStyle}" />
+                           FontSize="12" />
                     <Label Text="{Binding FormatTcpPorts, StringFormat='Початкові TCP-порти:  {0}'}" 
-                           Style="{StaticResource LabelStyle}" />
+                           FontSize="12" />
                 </VerticalStackLayout>
             </StackLayout>
         </StackLayout>
