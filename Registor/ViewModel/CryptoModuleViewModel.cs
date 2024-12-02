@@ -46,7 +46,7 @@ public partial class CryptoModuleViewModel : BaseViewModel
         SelectedModule = module;
         IsModuleSelected = module != null;
         FormatTcpPorts = SelectedModule?.Ports != null && SelectedModule.Ports.Any()
-            ? string.Join(",", SelectedModule.Ports)
+            ? string.Join(", ", SelectedModule.Ports)
             : "Не зареєстровані";
         UpdateUI();
     }

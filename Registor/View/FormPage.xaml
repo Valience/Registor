@@ -1,55 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Registor.View.FormPage"
              xmlns:model="clr-namespace:Registor.Model"
              xmlns:viewmodel="clr-namespace:Registor.ViewModel"
              x:DataType="viewmodel:FormPageViewModel"
-             Title="{Binding Title}">
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#0b2349" Offset="0" />
+            <GradientStop Color="#063972" Offset="1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <ScrollView>
-    <VerticalStackLayout Padding="20">
-        <Label Text="Module Name" FontAttributes="Bold"/>
-        <Entry Placeholder="Enter module name"
-               Text="{Binding CryptoModule.ModuleName}" />
+        <Frame BackgroundColor="White" CornerRadius="20" Padding="20" Margin="20">
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="selectinsertimage.ico" WidthRequest="32" HeightRequest="32" HorizontalOptions="Start" />
+                    <Label Text="Параметри модуля" FontAttributes="Bold" FontSize="18" TextColor="Black" Margin="10" />
+                </StackLayout>
 
-        <Label Text="Serial Number" FontAttributes="Bold" Margin="0,10,0,0"/>
-        <Entry Placeholder="Enter serial number"
-               Text="{Binding CryptoModule.SerialNumber}" />
+                <Label Text="Назва модуля:" FontAttributes="Bold" TextColor="Black" />
+                <Entry Placeholder="Введіть назву модуля (1-20)"
+                       Text="{Binding CryptoModule.ModuleName}" TextColor="Black" />
 
-        <Label Text="IP Address" FontAttributes="Bold" Margin="0,10,0,0"/>
-        <Entry Placeholder="Enter IP address"
-               Text="{Binding CryptoModule.IPAddress}" />
+                <Label Text="Серійний номер:" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Black" />
+                <Entry Placeholder="Введіть серійний номер (1-999)"
+                       Text="{Binding CryptoModule.SerialNumber}" TextColor="Black" />
 
-        <HorizontalStackLayout Margin="0,10,0,0">
-            <CheckBox IsChecked="{Binding IsDefaultPortsChecked}"/>
-            <Label Text="Initialize default ports (3011 - 3016)" VerticalOptions="Center" Margin="5,0,0,0"/>
-        </HorizontalStackLayout>
+                <Label Text="IP-адреса:" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Black" />
+                <Entry Placeholder="Введіть IP-адресу"
+                       Text="{Binding CryptoModule.IPAddress}" TextColor="Black" />
 
-        <Label Text="TCP Ports" FontAttributes="Bold" Margin="0,10,0,0"/>
-        <CollectionView ItemsSource="{Binding CryptoModule.Ports}" SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Port" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Entry Text="{Binding ., Mode=TwoWay}"
-                               Keyboard="Numeric" 
-                               Grid.Column="1"
-                               Unfocused="PortUnfocused"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-        <HorizontalStackLayout Margin="0,20,0,0" Spacing="10">
-            <Button Text="Cancel" Command="{Binding CancelModuleCommand}" 
-                    HorizontalOptions="StartAndExpand" />
-            <Button Text="Save" Command="{Binding SaveModuleCommand}" 
-                    HorizontalOptions="EndAndExpand" />
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+                <HorizontalStackLayout Margin="0,10,0,0">
+                    <CheckBox IsChecked="{Binding IsDefaultPortsChecked}" Color="#0b2349" />
+                    <Label Text="Початкові точки доступу" VerticalOptions="Center" Margin="5,0,0,0" TextColor="Black" />
+                </HorizontalStackLayout>
+
+                <Label Text="TCP порти:" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Black" />
+                <CollectionView ItemsSource="{Binding CryptoModule.Ports}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Порт" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black" />
+                                <Entry Text="{Binding ., Mode=TwoWay}"
+                                       Keyboard="Numeric" 
+                                       Grid.Column="1"
+                                       TextColor="Black"
+                                       Unfocused="PortUnfocused"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <HorizontalStackLayout Margin="0,20,0,0" Spacing="10">
+                    <Button Text="Відмінити" Style="{StaticResource FormButtonStyle}" Command="{Binding CancelModuleCommand}" 
+                            HorizontalOptions="StartAndExpand" />
+                    <Button Text="ОК" Style="{StaticResource FormButtonStyle}" Command="{Binding SaveModuleCommand}" 
+                            HorizontalOptions="EndAndExpand" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
     </ScrollView>
 </ContentPage>

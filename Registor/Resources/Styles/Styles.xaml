@@ -5,15 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="14" />
     </Style>
 
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="BackgroundColor" Value="#2C3E73" />
+        <Setter Property="BackgroundColor" Value="#063972" />
         <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="ImageSource" Value="buttonicon.ico"/>
+    </Style>
+
+    <Style x:Key="FormButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="#0b2349" />
     </Style>
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />

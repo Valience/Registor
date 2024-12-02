@@ -5,32 +5,50 @@
              xmlns:viewmodel="clr-namespace:Registor.ViewModel"
              x:DataType="viewmodel:CryptoModuleViewModel"
              x:Class="Registor.View.MainPage"
-             Title="Module Registor">
+             Title="Module Registor"
+             Shell.NavBarIsVisible="False">
 
-    <Grid Padding="10" BackgroundColor="#0D1F48">
+    <Grid Padding="10">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#0b2349" Offset="0" />
+                <GradientStop Color="#063972" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
 
-        <StackLayout Orientation="Horizontal" BackgroundColor="#0D1F48" Padding="10" Grid.Row="0">
-            <Image Source="icon.ico" WidthRequest="50" HeightRequest="50"/>
-            <StackLayout VerticalOptions="Center">
+        <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Grid.Row="0">
+            <Image Source="icon.ico" WidthRequest="60" HeightRequest="60" />
+            <StackLayout VerticalOptions="Center" Margin="10,0,0,0">
+                <Label Text="IIT"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       TextColor="White"/>
                 <Label Text="Мережний криптомодуль &quot;Гряда-301&quot;" 
                        FontAttributes="Bold" 
-                       FontSize="20" 
-                       Margin="10,0,0,0"
+                       FontSize="20"
                        TextColor="White"/>
                 <Label Text="Реєстратор модулів" 
                        FontSize="14" 
-                       Margin="10,0,0,0"
                        TextColor="White"/>
             </StackLayout>
         </StackLayout>
 
-        <Grid Grid.Row="1" Margin="0,10,0,10" BackgroundColor="#0D1F48">
+        <StackLayout Orientation="Vertical" Padding="0" Grid.Row="1">
+            <Label Text="Зареєстровані модулі" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,0"
+                   TextColor="White"/>
+        </StackLayout>
+
+        <Grid Grid.Row="2" Margin="0,10,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="1*" />
@@ -43,7 +61,6 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GetCryptoModulesCommand}" />
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Зареєстровані модулі" FontAttributes="Bold" FontSize="18" TextColor="#0D1F48"/>
                     <CollectionView ItemsSource="{Binding CryptoModules}"
                         SelectedItem="{Binding SelectedModule}"
                         SelectionMode="Single"
@@ -56,7 +73,7 @@
                                             <VisualState x:Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
-                                                    <Setter TargetName="ModuleNameLabel" Property="Label.TextColor" Value="Black" />
+                                                    <Setter TargetName="ModuleNameLabel" Property="Label.TextColor" Value="#0b2349" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="Selected">
@@ -84,7 +101,7 @@
                     </CollectionView>
                 </StackLayout>
             </RefreshView>
-            <StackLayout Grid.Column="1" BackgroundColor="#0D1F48" Padding="10">
+            <StackLayout Grid.Column="1" Padding="10">
                 <Label Text="Модулі" FontAttributes="Bold" FontSize="18" TextColor="White" />
                 <Button Style="{StaticResource ButtonStyle}" Text="Поновити" Command="{Binding GetCryptoModulesCommand}"/>
                 <Button Style="{StaticResource ButtonStyle}" Text="Додати..." Command="{Binding GoToFormCommand}"/>
@@ -94,25 +111,37 @@
             </StackLayout>
         </Grid>
 
-        <StackLayout Grid.Row="2" BackgroundColor="White" Padding="10">
+        <StackLayout Grid.Row="3" BackgroundColor="White" Padding="10">
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsNoModuleRegistered}">
-                <Image Source="info.ico" WidthRequest="24" HeightRequest="24" HorizontalOptions="Start"/>
-                <Label Text="Не зареєстровано жодного модуля" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="10"/>
+                <Image Source="info.ico" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start"/>
+                <Label Text="Не зареєстровано жодного модуля" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14" Margin="10"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsModuleRegistered}">
-                <Image Source="selectinsertimage.ico" Grid.Column="0" WidthRequest="24" HeightRequest="24" HorizontalOptions="Start" />
-                <Label Text="Оберіть модуль зі списку" Grid.Column="1" FontAttributes="Bold" FontSize="16" TextColor="#0D1F48" Margin="10" />
+                <Image Source="selectinsertimage.ico" Grid.Column="0" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" />
+                <Label Text="Оберіть модуль зі списку" Grid.Column="1" FontAttributes="Bold" FontSize="14" TextColor="#0D1F48" Margin="10" />
             </StackLayout>
-            <StackLayout IsVisible="{Binding IsModuleSelected}">
-            <Label Text="Інформація про модуль:" FontAttributes="Bold" FontSize="24"/>
-            <Label Text="{Binding SelectedModule.ModuleName, StringFormat='Назва модуля: {0}'}" />
-            <Label Text="{Binding SelectedModule.SerialNumber, StringFormat='Серійний номер: {0}'}" />
-            <Label Text="{Binding SelectedModule.IPAddress, StringFormat='IP-адреса: {0}'}" />
-            <Label Text="Початкові TCP-порти: " FontSize="14" VerticalOptions="Center"/>
-            <Label Text="{Binding FormatTcpPorts}" FontSize="14" VerticalOptions="Center"/>
+            <StackLayout Orientation="Vertical" IsVisible="{Binding IsModuleSelected}">
+                <HorizontalStackLayout Spacing="5">
+                    <Image Source="selectinsertimage.ico" WidthRequest="16" HeightRequest="16" VerticalOptions="Center" />
+                    <Label Text="Інформація про модуль:" 
+                           FontAttributes="Bold" 
+                           FontSize="14" 
+                           TextColor="#0b2349" 
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout Spacing="5" Margin="20,10,0,0">
+                    <Label Text="{Binding SelectedModule.ModuleName, StringFormat='Назва модуля:                {0}'}" 
+                           FontSize="12" />
+                    <Label Text="{Binding SelectedModule.SerialNumber, StringFormat='Серійний номер:           {0}'}" 
+                           FontSize="12" />
+                    <Label Text="{Binding SelectedModule.IPAddress, StringFormat='IP-адреса:                        {0}'}" 
+                           FontSize="12" />
+                    <Label Text="{Binding FormatTcpPorts, StringFormat='Початкові TCP-порти:  {0}'}" 
+                           FontSize="12" />
+                </VerticalStackLayout>
             </StackLayout>
-        </StackLayout>  
+        </StackLayout>
     </Grid>
 </ContentPage>
-

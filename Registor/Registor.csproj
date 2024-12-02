@@ -75,7 +75,7 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="View\FormPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	    <Generator></Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
