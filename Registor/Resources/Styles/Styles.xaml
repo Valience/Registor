@@ -10,8 +10,8 @@
     </Style>
 
     <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="TextColor" Value="White" />
-        <Setter Property="BackgroundColor" Value="#063972" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="TextColor" Value="#052850" />
         <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="ImageSource" Value="buttonicon.ico"/>
     </Style>
@@ -45,7 +45,7 @@
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
-        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="CornerRadius" Value="0"/>
         <Setter Property="Padding" Value="14,10"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>

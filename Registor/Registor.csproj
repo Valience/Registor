@@ -57,11 +57,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\botton.bmp" />
-	  <None Remove="Resources\Images\buttonIcon.ico" />
+	  <None Remove="Resources\Images\buttonicon.ico" />
 	  <None Remove="Resources\Images\device.ico" />
 	  <None Remove="Resources\Images\dotnet_bot.svg" />
 	  <None Remove="Resources\Images\error.ico" />
-	  <None Remove="Resources\Images\Icon.ico" />
+	  <None Remove="Resources\Images\icon.ico" />
 	  <None Remove="Resources\Images\info.ico" />
 	  <None Remove="Resources\Images\netdevice.ico" />
 	  <None Remove="Resources\Images\selectinsertimage.ico" />

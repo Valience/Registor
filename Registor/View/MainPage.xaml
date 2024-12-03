@@ -11,7 +11,8 @@
     <Grid Padding="10">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="#0b2349" Offset="0" />
+                <GradientStop Color="#052850" Offset="0" />
+                <GradientStop Color="#052850" Offset="0.3"/>
                 <GradientStop Color="#063972" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
@@ -24,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Grid.Row="0">
-            <Image Source="icon.ico" WidthRequest="60" HeightRequest="60" />
+            <Image Source="icon.ico" WidthRequest="48" HeightRequest="48" />
             <StackLayout VerticalOptions="Center" Margin="10,0,0,0">
                 <Label Text="IIT"
                        FontAttributes="Bold"
@@ -39,7 +40,7 @@
                        TextColor="White"/>
             </StackLayout>
         </StackLayout>
-
+        
         <StackLayout Orientation="Vertical" Padding="0" Grid.Row="1">
             <Label Text="Зареєстровані модулі" 
                    FontSize="20"
@@ -118,12 +119,12 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsModuleRegistered}">
-                <Image Source="selectinsertimage.ico" Grid.Column="0" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" />
+                <Image Source="selectinsertimage.ico" Grid.Column="0" WidthRequest="24" HeightRequest="24" HorizontalOptions="Start" />
                 <Label Text="Оберіть модуль зі списку" Grid.Column="1" FontAttributes="Bold" FontSize="14" TextColor="#0D1F48" Margin="10" />
             </StackLayout>
             <StackLayout Orientation="Vertical" IsVisible="{Binding IsModuleSelected}">
                 <HorizontalStackLayout Spacing="5">
-                    <Image Source="selectinsertimage.ico" WidthRequest="16" HeightRequest="16" VerticalOptions="Center" />
+                    <Image Source="selectinsertimage.ico" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                     <Label Text="Інформація про модуль:" 
                            FontAttributes="Bold" 
                            FontSize="14" 

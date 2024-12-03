@@ -61,9 +61,11 @@
 
                 <HorizontalStackLayout Margin="0,20,0,0" Spacing="10">
                     <Button Text="Відмінити" Style="{StaticResource FormButtonStyle}" Command="{Binding CancelModuleCommand}" 
-                            HorizontalOptions="StartAndExpand" />
+                            HorizontalOptions="StartAndExpand"
+                            CornerRadius="8" />
                     <Button Text="ОК" Style="{StaticResource FormButtonStyle}" Command="{Binding SaveModuleCommand}" 
-                            HorizontalOptions="EndAndExpand" />
+                            HorizontalOptions="EndAndExpand"
+                            CornerRadius="8" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </Frame>
