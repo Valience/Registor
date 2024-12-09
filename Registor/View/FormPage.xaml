@@ -15,7 +15,7 @@
     </ContentPage.Background>
 
     <ScrollView>
-        <Frame BackgroundColor="White" CornerRadius="20" Padding="20" Margin="20">
+        <Frame BackgroundColor="White" Padding="20" Margin="20">
             <VerticalStackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="selectinsertimage.ico" WidthRequest="32" HeightRequest="32" HorizontalOptions="Start" />
@@ -61,11 +61,9 @@
 
                 <HorizontalStackLayout Margin="0,20,0,0" Spacing="10">
                     <Button Text="Відмінити" Style="{StaticResource FormButtonStyle}" Command="{Binding CancelModuleCommand}" 
-                            HorizontalOptions="StartAndExpand"
-                            CornerRadius="8" />
+                            HorizontalOptions="StartAndExpand" />
                     <Button Text="ОК" Style="{StaticResource FormButtonStyle}" Command="{Binding SaveModuleCommand}" 
-                            HorizontalOptions="EndAndExpand"
-                            CornerRadius="8" />
+                            HorizontalOptions="EndAndExpand" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </Frame>

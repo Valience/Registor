@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Registor.Helpers;
 using Registor.Services;
 using Registor.View;
 using Registor.ViewModel;
@@ -24,6 +24,8 @@ public static class MauiProgram
         builder.Services.AddTransient<CryptoModuleViewModel>();
 
         builder.Services.AddSingleton<CryptoModuleService>();
+
+        CustomHandlers.ConfigureHandlers();
 
         return builder.Build();
     }
